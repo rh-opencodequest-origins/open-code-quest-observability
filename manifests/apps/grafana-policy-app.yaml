@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grafana-policy
+  namespace: openshift-gitops
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/ton-org/gitops-repo.git'
+    targetRevision: main
+    path: policies/grafana-policy
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: policies
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
