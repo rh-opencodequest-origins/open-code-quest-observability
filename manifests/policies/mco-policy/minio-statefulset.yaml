@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: minio
+  namespace: minio
+spec:
+  serviceName: minio
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minio
+  template:
+    metadata:
+      labels:
+        app: minio
+    spec:
+      containers:
+        - name: minio
+          image: quay.io/minio/minio:RELEASE.2023-10-07T15-07-38Z
+          args:
+            - server
+            - /data
+            - --console-address
+            - ":9090"
+          env:
+            - name: MINIO_ACCESS_KEY
+              value: minio
+            - name: MINIO_SECRET_KEY
+              value: minio123
+          ports:
+            - containerPort: 9000
+            - containerPort: 9090
+          volumeMounts:
+            - mountPath: /data
+              name: data
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10Gi
+        storageClassName: gp2

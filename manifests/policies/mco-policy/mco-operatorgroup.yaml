@@ -1,0 +1,8 @@
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: mco-operator-group
+  namespace: open-cluster-management-observability
+spec:
+  targetNamespaces:
+    - open-cluster-management-observability

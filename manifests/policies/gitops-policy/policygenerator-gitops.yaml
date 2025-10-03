@@ -8,11 +8,10 @@ placementBindingDefaults:
 policyDefaults:
   remediationAction: enforce
   severity: high
-placementDefaults:
-  name: local-cluster-placement
-  clusterSelectors:
-    matchLabels:
-      local-cluster: 'true'
+placement:
+    labelSelector:
+      matchLabels:
+        local-cluster: "true"
 policies:
   - name: gitops-operator
     manifests:
