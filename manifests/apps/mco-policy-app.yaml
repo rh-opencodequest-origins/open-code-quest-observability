@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/ton-org/gitops-repo.git'
+    repoURL: 'https://github.com/atiouajni/open-code-quest-observability.git'
     targetRevision: main
-    path: policies/mco-policy
+    path: manifests/policies/mco-policy
   destination:
     server: https://kubernetes.default.svc
     namespace: policies
