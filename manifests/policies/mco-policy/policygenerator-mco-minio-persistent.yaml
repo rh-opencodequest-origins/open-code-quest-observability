@@ -2,16 +2,16 @@ apiVersion: policy.open-cluster-management.io/v1
 kind: PolicyGenerator
 metadata:
   name: require-mco-with-minio-persistent
-  namespace: policies
 placementBindingDefaults:
   name: mco-minio-binding
 policyDefaults:
   remediationAction: enforce
   severity: high
-placement:
-    labelSelector:
-      matchLabels:
-        local-cluster: "true"
+  namespace: policies
+  placement:
+      labelSelector:
+        matchLabels:
+          local-cluster: "true"
 policies:
   - name: mco-operator
     manifests:
