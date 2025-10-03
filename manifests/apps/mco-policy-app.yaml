@@ -9,8 +9,6 @@ spec:
     repoURL: 'https://github.com/atiouajni/open-code-quest-observability.git'
     targetRevision: main
     path: manifests/policies/mco-policy
-    kustomize:
-      buildOptions: "--enable-alpha-plugins"
   destination:
     server: https://kubernetes.default.svc
     namespace: policies
