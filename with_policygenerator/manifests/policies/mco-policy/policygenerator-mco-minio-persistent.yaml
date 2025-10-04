@@ -1,0 +1,26 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: require-mco-with-minio-persistent
+placementBindingDefaults:
+  name: mco-minio-binding
+policyDefaults:
+  remediationAction: enforce
+  severity: high
+  namespace: policies
+  placement:
+      labelSelector:
+        matchLabels:
+          local-cluster: "true"
+policies:
+  - name: minio
+    manifests:
+      - path: minio-namespace.yaml
+      - path: minio-pvc.yaml
+      - path: minio-statefulset.yaml
+      - path: minio-service.yaml
+      - path: minio-secret.yaml
+  - name: mco-instance
+    manifests:
+      - path: multiclusterobservability.yaml
+      - path: mco-pull-secret-configurationpolicy.yaml

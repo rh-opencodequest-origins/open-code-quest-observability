@@ -1,0 +1,39 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  annotations:
+    policy.open-cluster-management.io/categories: CM Configuration Management
+    policy.open-cluster-management.io/controls: CM-2 Baseline Configuration
+    policy.open-cluster-management.io/description: ''
+    policy.open-cluster-management.io/standards: NIST SP 800-53
+  labels:
+    app.kubernetes.io/instance: mco-policy
+  name: mco-instance
+  namespace: policies
+spec:
+  disabled: false
+  policy-templates:
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: mco-instance
+        spec:
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: observability.open-cluster-management.io/v1beta2
+                kind: MultiClusterObservability
+                metadata:
+                  name: observability
+                  namespace: open-cluster-management-observability
+                spec:
+                  observabilityAddonSpec:
+                    enableMetrics: true
+                  storageConfig:
+                    metricObjectStorage:
+                      key: thanos.yaml
+                      name: minio-secret
+          remediationAction: enforce
+          severity: high
+  remediationAction: enforce

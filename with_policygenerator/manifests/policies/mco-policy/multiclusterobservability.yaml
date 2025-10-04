@@ -1,0 +1,12 @@
+apiVersion: observability.open-cluster-management.io/v1beta2
+kind: MultiClusterObservability
+metadata:
+  name: observability
+  namespace: open-cluster-management-observability
+spec:
+  storageConfig:
+    metricObjectStorage:
+      name: minio-secret
+      key: thanos.yaml
+  observabilityAddonSpec:
+    enableMetrics: true

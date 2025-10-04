@@ -1,0 +1,24 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: user-workload-monitoring
+placementBindingDefaults:
+  name: user-workload-monitoring-binding
+policyDefaults:
+  namespace: policies
+  remediationAction: enforce
+  complianceType: musthave
+policies:
+  - name: enable-user-workload-monitoring
+    remediationAction: enforce
+    disabled: false
+    manifests:
+      - path: uw-cm.yaml
+placements:
+  - name: managed-clusters-placement
+    clusterSelectors:
+      matchExpressions:
+        - key: local-cluster
+          operator: NotIn
+          values: ["true"]
+
