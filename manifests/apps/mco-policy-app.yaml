@@ -4,7 +4,7 @@ metadata:
   name: mco-policy
   namespace: openshift-gitops
 spec:
-  project: observabilityap
+  project: observability
   source:
     repoURL: 'https://github.com/atiouajni/open-code-quest-observability.git'
     targetRevision: main

@@ -17,11 +17,8 @@ spec:
   sourceRepos:
     - 'https://github.com/atiouajni/open-code-quest-observability.git'
   destinations:
-    - namespace: observability
-      server: https://kubernetes.default.svc
-  clusterResourceWhitelist:
-    - group: '*'
-      kind: '*'
+    - namespace: '*'
+      server: '*'
 ---
 
 apiVersion: argoproj.io/v1alpha1
