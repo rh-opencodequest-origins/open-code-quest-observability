@@ -8,17 +8,14 @@ policyDefaults:
   namespace: policies
   remediationAction: enforce
   complianceType: musthave
+  placement:
+      labelSelector:
+        matchLabels:
+          local-cluster: "false"
 policies:
   - name: enable-user-workload-monitoring
     remediationAction: enforce
     disabled: false
     manifests:
       - path: uw-cm.yaml
-placements:
-  - name: managed-clusters-placement
-    clusterSelectors:
-      matchExpressions:
-        - key: local-cluster
-          operator: NotIn
-          values: ["true"]
 
