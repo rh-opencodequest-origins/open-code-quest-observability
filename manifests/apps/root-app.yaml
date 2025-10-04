@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: observability
-  namespace: openshift-gitops
+  namespace: observability
 spec:
   description: "Projet Argo CD pour toutes les policies ACM et dashboards observabilité"
   sourceRepos:
@@ -16,7 +16,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: root-app
-  namespace: openshift-gitops
+  namespace: observability
 spec:
   project: observability
   source:
@@ -25,7 +25,7 @@ spec:
     path: manifests/apps
   destination:
     server: https://kubernetes.default.svc
-    namespace: openshift-gitops
+    namespace: observability
   syncPolicy:
     automated:
       prune: true
