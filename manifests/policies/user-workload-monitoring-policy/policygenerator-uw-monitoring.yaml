@@ -5,7 +5,7 @@ metadata:
 placementBindingDefaults:
   name: user-workload-monitoring-binding
 policyDefaults:
-  namespace: policies
+  namespace: observability
   remediationAction: enforce
   complianceType: musthave
   placement:

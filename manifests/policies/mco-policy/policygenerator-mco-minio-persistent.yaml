@@ -7,7 +7,7 @@ placementBindingDefaults:
 policyDefaults:
   remediationAction: enforce
   severity: high
-  namespace: policies
+  namespace: observability
   placement:
       labelSelector:
         matchLabels:
