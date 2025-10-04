@@ -1,10 +1,28 @@
 apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: observability
+  namespace: openshift-gitops
+spec:
+  description: "Projet Argo CD pour toutes les policies ACM et dashboards observabilité"
+  sourceRepos:
+    - 'https://github.com/ton-org/gitops-repo.git'
+  destinations:
+    - namespace: policies
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  namespaceResourceBlacklist: []
+---
+
+apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: root-app
   namespace: openshift-gitops
 spec:
-  project: default
+  project: observability
   source:
     repoURL: 'https://github.com/atiouajni/open-code-quest-observability.git'
     targetRevision: main
