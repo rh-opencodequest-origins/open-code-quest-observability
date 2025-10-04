@@ -22,7 +22,8 @@ spec:
   clusterResourceWhitelist:
     - group: '*'
       kind: '*'
-  namespaceResourceBlacklist: []
+  sourceNamespaces:
+    - openshift-gitops
 ---
 
 apiVersion: argoproj.io/v1alpha1
