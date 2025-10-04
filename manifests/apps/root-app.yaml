@@ -6,9 +6,9 @@ metadata:
 spec:
   description: "Projet Argo CD pour toutes les policies ACM et dashboards observabilité"
   sourceRepos:
-    - 'https://github.com/ton-org/gitops-repo.git'
+    - 'https://github.com/atiouajni/open-code-quest-observability.git'
   destinations:
-    - namespace: policies
+    - namespace: observability
       server: https://kubernetes.default.svc
   clusterResourceWhitelist:
     - group: '*'
@@ -29,7 +29,7 @@ spec:
     path: manifests/apps
   destination:
     server: https://kubernetes.default.svc
-    namespace: openshift-gitops
+    namespace: observability
   syncPolicy:
     automated:
       prune: true
