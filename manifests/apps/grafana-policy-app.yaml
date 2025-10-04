@@ -4,7 +4,7 @@ metadata:
   name: grafana-policy
   namespace: openshift-gitops
 spec:
-  project: observability
+  project: default
   source:
     repoURL: 'https://github.com/atiouajni/open-code-quest-observability.git'
     targetRevision: main
