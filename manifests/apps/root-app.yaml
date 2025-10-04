@@ -1,12 +1,3 @@
-apiVersion: project.openshift.io/v1
-kind: Project
-metadata:
-  name: observability
-  annotations:
-    openshift.io/display-name: "Observability Project"
-    openshift.io/description: "Namespace pour toutes les applications et policies liées à l'observabilité"
----
-
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
