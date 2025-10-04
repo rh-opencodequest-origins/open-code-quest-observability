@@ -4,6 +4,9 @@ metadata:
   name: argocd
 spec:
   kustomizeBuildOptions: --enable-alpha-plugins
+  server:
+    route:
+      enabled: true
   repo:
     env:
     - name: KUSTOMIZE_PLUGIN_HOME

@@ -10,8 +10,8 @@ metadata:
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: observabilityap
-  namespace: observability
+  name: observability
+  namespace: openshift-gitops
 spec:
   description: "Projet Argo CD pour toutes les policies ACM et dashboards observabilité"
   sourceRepos:
@@ -22,17 +22,15 @@ spec:
   clusterResourceWhitelist:
     - group: '*'
       kind: '*'
-  sourceNamespaces:
-   - observability
 ---
 
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: root-app
-  namespace: observability
+  namespace: openshift-gitops
 spec:
-  project: observabilityap
+  project: observability
   source:
     repoURL: 'https://github.com/atiouajni/open-code-quest-observability.git'
     targetRevision: main
