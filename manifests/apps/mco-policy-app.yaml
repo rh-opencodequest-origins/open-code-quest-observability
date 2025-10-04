@@ -4,7 +4,7 @@ metadata:
   name: mco-policy
   namespace: observability
 spec:
-  project: observability
+  project: observabilityap
   source:
     repoURL: 'https://github.com/atiouajni/open-code-quest-observability.git'
     targetRevision: main

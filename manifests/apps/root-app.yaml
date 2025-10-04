@@ -10,7 +10,7 @@ metadata:
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: observability
+  name: observabilityap
   namespace: observability
 spec:
   description: "Projet Argo CD pour toutes les policies ACM et dashboards observabilité"
@@ -23,7 +23,7 @@ spec:
     - group: '*'
       kind: '*'
   sourceNamespaces:
-   - 
+   - observability
 ---
 
 apiVersion: argoproj.io/v1alpha1
@@ -32,7 +32,7 @@ metadata:
   name: root-app
   namespace: observability
 spec:
-  project: observability
+  project: observabilityap
   source:
     repoURL: 'https://github.com/atiouajni/open-code-quest-observability.git'
     targetRevision: main
