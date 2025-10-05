@@ -16,7 +16,6 @@ policies:
   - name: minio
     manifests:
       - path: minio-namespace.yaml
-      - path: minio-pvc.yaml
       - path: minio-statefulset.yaml
       - path: minio-service.yaml
       - path: minio-secret.yaml
