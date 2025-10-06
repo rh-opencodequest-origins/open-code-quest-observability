@@ -1,37 +1,27 @@
 apiVersion: policy.open-cluster-management.io/v1
-kind: Policy
+kind: ConfigurationPolicy
 metadata:
   name: rhdh-servicemonitor
-  namespace: observability
 spec:
   remediationAction: enforce
-  disabled: false
-  policy-templates:
-    - objectDefinition:
-        apiVersion: policy.open-cluster-management.io/v1
-        kind: ConfigurationPolicy
+  severity: low
+  object-templates-raw: |
+    {{ range (lookup "v1" "Namespace" "" "").items }}
+    {{ if regexMatch "^rhdh-.*" .metadata.name }}
+    - complianceType: musthave
+      objectDefinition:
+        apiVersion: monitoring.coreos.com/v1
+        kind: ServiceMonitor
         metadata:
           name: rhdh-servicemonitor
+          namespace: {{ .metadata.name }}
         spec:
-          remediationAction: enforce
-          severity: low
-          object-templates-raw: |
-            {{ range (lookup "v1" "Namespace" "" "").items }}
-            {{ if regexMatch "^rhdh-.*" .metadata.name }}
-            - complianceType: musthave
-              objectDefinition:
-                apiVersion: monitoring.coreos.com/v1
-                kind: ServiceMonitor
-                metadata:
-                  name: rhdh-servicemonitor
-                  namespace: {{ .metadata.name }}
-                spec:
-                  endpoints:
-                  - interval: 30s
-                    port: 9464
-                    scheme: http
-                  selector:
-                    matchLabels:
-                      app.kubernetes.io/instance: {{ .metadata.name }}
-            {{ end }}
-            {{ end }}
+          endpoints:
+          - interval: 30s
+            port: 9464
+            scheme: http
+          selector:
+            matchLabels:
+              app.kubernetes.io/instance: {{ .metadata.name }}
+    {{ end }}
+    {{ end }}
