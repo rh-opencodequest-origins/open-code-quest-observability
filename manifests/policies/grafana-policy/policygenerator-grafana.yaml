@@ -13,9 +13,7 @@ policyDefaults:
         matchLabels:
           local-cluster: "true"
 policies:
-  - name: grafana-operator
-    manifests:
-      - path: grafana-subscription.yaml
   - name: grafana
     manifests:
+      - path: grafana-subscription.yaml
       - path: grafana-instance.yaml
