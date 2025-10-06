@@ -18,4 +18,5 @@ policies:
     disabled: false
     manifests:
       - path: uw-cm.yaml
+      - path: rhdh-servicemonitor-policy.yaml
 

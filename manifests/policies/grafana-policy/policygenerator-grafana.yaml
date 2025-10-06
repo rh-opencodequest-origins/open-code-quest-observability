@@ -16,3 +16,6 @@ policies:
   - name: grafana-operator
     manifests:
       - path: grafana-subscription.yaml
+  - name: grafana
+    manifests:
+      - path: grafana-instance.yaml
