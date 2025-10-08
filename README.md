@@ -9,6 +9,7 @@ Il s’appuie sur le plugin **PolicyGenerator** pour générer automatiquement l
 
 Ce repo organise l’ensemble des politiques et applications de manière **hiérarchique et modulaire** :
 
+- **argocd-instance.yaml** : instance ArgoCD préconfiguré avec le plugin PolicyGenerator.
 - **Root App Argo CD (`apps/root-app.yaml`)** : orchestrateur central de toutes les sous-applications.
 - **Sous-applications Argo CD** :
   - `grafana-policy-app.yaml` → déploie Grafana Operator, une instance Grafana et les dashboards d'observabilité
@@ -21,7 +22,8 @@ Ce repo organise l’ensemble des politiques et applications de manière **hiér
 ## Structure du Repo
 
 ```
-gitops-repo/
+manifests/
+├── argocd-instance.yaml       # Instance ArgoCD
 ├── apps/                      # Applications Argo CD (App-of-Apps)
 │   ├── root-app.yaml          # Application racine qui orchestre toutes les sous-applications
 │   ├── uw-policy-app.yaml
@@ -54,7 +56,7 @@ oc create -f manifests/argocd-instance.yaml
 
 ```bash
 # Créer l'application root dans le cluster
-oc create -f apps/root-app.yaml
+oc create -f manifests/apps/root-app.yaml
 
 # Synchroniser l'application root pour déployer toutes les sous-applications
 argocd app sync root-app
