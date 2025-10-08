@@ -66,6 +66,12 @@ argocd app sync root-app
 
 ## 3. Commandes utiles
 
+- récuperer le mdp Argo CD :
+```bash
+oc extract secret/argocd-observability-cluster  -n observability --to=-
+
+```
+
 - Vérifier les applications Argo CD :
 ```bash
 oc get applications -n observability
@@ -81,7 +87,7 @@ argocd app sync <app-name>
 argocd app get <app-name>
 ```
 
-## 5. Fonctionnement des Policies dans ACM
+## 4. Fonctionnement des Policies dans ACM
 
 Les **policies ACM** permettent de définir des règles déclaratives qui doivent être respectées sur les clusters gérés. Elles peuvent :
 
