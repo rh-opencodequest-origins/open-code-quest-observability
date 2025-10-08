@@ -46,8 +46,6 @@ Cela se fait en ajoutant l’option `--enable-alpha-plugins` dans la section `re
 oc create -f manifests/argocd-instance.yaml
 ```
 
----
-
 ## 2. App-of-Apps
 
 - `apps/root-app.yaml` est l’application racine Argo CD.
@@ -62,9 +60,13 @@ oc create -f apps/root-app.yaml
 argocd app sync root-app
 ```
 
----
+## 3. Vérifications
 
-## 3. Commandes utiles
+1 - Il faut s'assurer que les applications ArgoCD sont bien synchrnonisés.
+2 - Depuis un cluster managé, consulter la page `Observe` > `Metrics`. Vérifier que la metrique `catalog_processed_entities_count_total` est disponible.
+3 - Depuis le dashboard Grafana dans ACM, vérifier que ces métriques sont présentes.
+
+## 4. Commandes utiles
 
 - récuperer le mdp Argo CD :
 ```bash
@@ -87,7 +89,9 @@ argocd app sync <app-name>
 argocd app get <app-name>
 ```
 
-## 4. Fonctionnement des Policies dans ACM
+---
+
+## Fonctionnement des Policies dans ACM
 
 Les **policies ACM** permettent de définir des règles déclaratives qui doivent être respectées sur les clusters gérés. Elles peuvent :
 
