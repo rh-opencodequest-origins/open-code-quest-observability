@@ -51,7 +51,7 @@ oc create -f manifests/argocd-instance.yaml
 ## 2. App-of-Apps
 
 - `apps/root-app.yaml` est l’application racine Argo CD.
-- Elle référence toutes les sous-applications : GitOps, Grafana, MCO.
+- Elle référence toutes les sous-applications : Grafana, MCO et le user workload monitoring (UW).
 - Chaque sous-application déploie ses propres manifests depuis `policies/<policy-name>`.
 
 ```bash
