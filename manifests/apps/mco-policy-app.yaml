@@ -6,7 +6,7 @@ metadata:
 spec:
   project: observability
   source:
-    repoURL: 'https://github.com/atiouajni/open-code-quest-observability.git'
+    repoURL: 'https://github.com/rh-opencodequest-origins/open-code-quest-observability.git'
     targetRevision: main
     path: manifests/policies/mco-policy
   destination:
