@@ -6,7 +6,7 @@ metadata:
 spec:
   description: "Projet Argo CD pour toutes les policies ACM et dashboards observabilité"
   sourceRepos:
-    - 'https://github.com/atiouajni/open-code-quest-observability.git'
+    - 'https://github.com/rh-opencodequest-origins/open-code-quest-observability.git'
   destinations:
     - namespace: '*'
       server: '*'
