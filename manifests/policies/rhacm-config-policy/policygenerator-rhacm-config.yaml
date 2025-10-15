@@ -1,0 +1,22 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: user-workload-monitoring
+placementBindingDefaults:
+  name: user-workload-monitoring-binding
+policyDefaults:
+  namespace: observability
+  remediationAction: enforce
+  complianceType: musthave
+  placement:
+      labelSelector:
+        matchLabels:
+          local-cluster: "true"
+policies:
+  - name: enable-user-workload-monitoring
+    remediationAction: enforce
+    disabled: false
+    manifests:
+      - path: clusterset-observability.yaml
+      - path: managedclustersetbinding.yaml
+
