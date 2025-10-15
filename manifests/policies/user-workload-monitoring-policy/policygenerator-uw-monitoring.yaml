@@ -9,9 +9,8 @@ policyDefaults:
   remediationAction: enforce
   complianceType: musthave
   placement:
-      labelSelector:
-        matchLabels:
-          local-cluster: "false"
+      clusterSets:
+        - observability
 policies:
   - name: enable-user-workload-monitoring
     remediationAction: enforce
