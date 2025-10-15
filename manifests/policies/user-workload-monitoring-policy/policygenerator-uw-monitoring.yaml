@@ -8,6 +8,13 @@ policyDefaults:
   namespace: observability
   remediationAction: enforce
   complianceType: musthave
+  placement:
+      labelSelector:
+        matchExpressions:
+          - key: cluster.open-cluster-management.io/clusterset
+            operator: In
+            values:
+              - observability
 policies:
   - name: enable-user-workload-monitoring
     remediationAction: enforce
@@ -15,7 +22,4 @@ policies:
     manifests:
       - path: uw-cm.yaml
       - path: rhdh-servicemonitor-policy.yaml
-    placement:
-      clusterSets:
-        - observability
 
