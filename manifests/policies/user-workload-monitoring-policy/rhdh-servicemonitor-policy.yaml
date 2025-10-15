@@ -7,7 +7,7 @@ spec:
   severity: low
   object-templates-raw: |
     {{ range (lookup "v1" "Namespace" "" "").items }}
-    {{ if regexMatch "^rhdh-.*" .metadata.name }}
+    {{ if regexMatch "^rhdh-team.*" .metadata.name }}
     - complianceType: musthave
       objectDefinition:
         apiVersion: monitoring.coreos.com/v1
