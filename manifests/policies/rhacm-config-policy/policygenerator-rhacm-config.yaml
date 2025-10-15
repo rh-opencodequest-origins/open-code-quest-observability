@@ -1,9 +1,9 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: PolicyGenerator
 metadata:
-  name: user-workload-monitoring
+  name: rhacm-config
 placementBindingDefaults:
-  name: user-workload-monitoring-binding
+  name: rhacm-config-binding
 policyDefaults:
   namespace: observability
   remediationAction: enforce
@@ -13,7 +13,7 @@ policyDefaults:
         matchLabels:
           local-cluster: "true"
 policies:
-  - name: enable-user-workload-monitoring
+  - name: rhacm-config
     remediationAction: enforce
     disabled: false
     manifests:
