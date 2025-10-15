@@ -18,8 +18,9 @@ spec:
         spec:
           endpoints:
           - interval: 30s
-            port: 9464
+            port: http-metrics
             scheme: http
+            path: /metrics
           selector:
             matchLabels:
               app.kubernetes.io/instance: {{ .metadata.name }}
