@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: minio-create-buckets
+  namespace: minio
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: create-buckets
+          image: quay.io/minio/mc:latest
+          env:
+            - name: MINIO_SERVER
+              value: "http://minio.minio.svc.cluster.local:9000"
+            - name: MINIO_ROOT_USER
+              value : minio
+            - name: MINIO_ROOT_PASSWORD
+              value : minio123
+          command:
+            - /bin/sh
+            - -c
+            - |
+              mc --config-dir /tmp alias set myminio $MINIO_SERVER $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD
+              mc --config-dir /tmp mb -p myminio/mco-bucket || true
+              echo "Bucket created successfully."

@@ -24,3 +24,4 @@ policies:
       - path: multiclusterobservability.yaml
       - path: mco-pull-secret-configurationpolicy.yaml
       - path: observability-metrics-custom-allowlist-cm.yaml
+      - path: minio-create-bucket-job.yaml
