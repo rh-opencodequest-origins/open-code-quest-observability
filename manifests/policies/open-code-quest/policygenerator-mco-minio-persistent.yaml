@@ -1,0 +1,22 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: open-code-quest-config
+placementBindingDefaults:
+  name: open-code-quest-binding
+policyDefaults:
+  remediationAction: enforce
+  severity: high
+  namespace: observabilityopen-cluster-management-observability
+  configurationPolicyAnnotations:
+    - policy.open-cluster-management.io/disable-templates": "true"
+  placement:
+      labelSelector:
+        matchLabels:
+          local-cluster: "true"
+policies:
+  - name: open-code-quest
+    manifests:
+      - path: observability-metrics-custom-allowlist-cm.yaml
+      - path: open-code-quest-custom-dashboard.yaml
+

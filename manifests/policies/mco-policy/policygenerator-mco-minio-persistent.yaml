@@ -24,8 +24,4 @@ policies:
       - path: multiclusterobservability.yaml
       - path: mco-pull-secret-configurationpolicy.yaml
       - path: minio-create-bucket-job.yaml
-  - name: open-code-quest
-    manifests:
-      - path: observability-metrics-custom-allowlist-cm.yaml
-      - path: open-code-quest-custom-dashboard.yaml
 
