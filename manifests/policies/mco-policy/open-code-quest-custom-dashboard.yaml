@@ -3,6 +3,8 @@ apiVersion: v1
 metadata:
   name: open-code-quest
   namespace: open-cluster-management-observability
+  annotations:
+    - policy.open-cluster-management.io/disable-templates: "true"
   labels:
     grafana-custom-dashboard: "true"
 data:
