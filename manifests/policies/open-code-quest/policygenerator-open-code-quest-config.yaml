@@ -8,8 +8,6 @@ policyDefaults:
   remediationAction: enforce
   severity: high
   namespace: observability
-  configurationPolicyAnnotations:
-    - policy.open-cluster-management.io/disable-templates": "true"
   placement:
       labelSelector:
         matchLabels:
