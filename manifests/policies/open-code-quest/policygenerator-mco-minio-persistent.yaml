@@ -7,7 +7,7 @@ placementBindingDefaults:
 policyDefaults:
   remediationAction: enforce
   severity: high
-  namespace: observabilityopen-cluster-management-observability
+  namespace: open-cluster-management-observability
   configurationPolicyAnnotations:
     - policy.open-cluster-management.io/disable-templates": "true"
   placement:
