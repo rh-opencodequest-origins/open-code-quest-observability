@@ -149,8 +149,6 @@ Pour personnaliser les dashboards d'observabilité, il est nécessaire d'utilise
 
 4. **Créer et tester vos dashboards** dans l'interface Grafana, puis exporter le JSON du dashboard.
 
-5. **Intégrer le dashboard dans le projet** en créant un `GrafanaDashboard` dans `manifests/policies/grafana-policy/` et en le référençant dans la policy.
-
 Pour plus de détails, consultez la [documentation officielle Red Hat ACM](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.11/html-single/observability/index#setting-up-the-grafana-developer-instance).
 
 ## 6. Commandes utiles
