@@ -62,13 +62,27 @@ oc create -f manifests/apps/root-app.yaml
 argocd app sync root-app
 ```
 
-## 3. Vérifications
+## 3. Ajout de clusters au projet d'observabilité
+
+Pour qu'un cluster géré bénéficie de l'observabilité déployée par ce projet, il suffit de l'ajouter au ManagedClusterSet nommé `observability`. Cette opération s'effectue directement depuis l'interface web de Red Hat Advanced Cluster Management :
+
+  1. Accédez à la console ACM via All Clusters
+  2. Dans le menu de navigation, allez dans Infrastructure > Clusters
+  3. Sélectionnez le cluster que vous souhaitez intégrer
+  4. Dans l'onglet Cluster sets, cliquez sur Edit cluster sets
+  5. Cochez le clusterset observability
+  6. Validez en cliquant sur Save
+
+  Une fois le cluster ajouté au clusterset observability, les policies ACM configurées dans ce projet (User Workload Monitoring, Grafana, MCO) seront automatiquement évaluées et appliquées sur ce cluster. Le ManagedClusterSetBinding présent dans le namespace observability permet aux Placement de cibler les clusters membres de ce clusterset. Vous pourrez
+  ensuite visualiser les métriques de ce cluster dans les dashboards Grafana déployés par le projet.
+
+## 4. Vérifications
 
 1 - Il faut s'assurer que les applications ArgoCD sont bien synchrnonisés.
 2 - Depuis un cluster managé, consulter la page `Observe` > `Metrics`. Vérifier que la metrique `catalog_processed_entities_count_total` est disponible.
 3 - Depuis le dashboard Grafana dans ACM, vérifier que ces métriques sont présentes.
 
-## 4. Commandes utiles
+## 5. Commandes utiles
 
 - récuperer le mdp Argo CD :
 ```bash
