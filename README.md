@@ -82,7 +82,78 @@ Pour qu'un cluster géré bénéficie de l'observabilité déployée par ce proj
 2 - Depuis un cluster managé, consulter la page `Observe` > `Metrics`. Vérifier que la metrique `catalog_processed_entities_count_total` est disponible.
 3 - Depuis le dashboard Grafana dans ACM, vérifier que ces métriques sont présentes.
 
-## 5. Commandes utiles
+## 5. Modification des dashboards Grafana
+
+Pour personnaliser les dashboards d'observabilité, il est nécessaire d'utiliser une instance Grafana de développement. Cette approche permet de tester et affiner les dashboards avant de les déployer en production via les policies ACM.
+
+### Configuration de l'instance Grafana de développement
+
+1. **Déployer une instance Grafana dev** :
+   ```bash
+   oc apply -f - <<EOF
+   apiVersion: grafana.integreatly.org/v1beta1
+   kind: Grafana
+   metadata:
+     name: grafana-dev
+     namespace: open-cluster-management-observability
+   spec:
+     config:
+       auth:
+         disable_login_form: false
+       auth.anonymous:
+         enabled: true
+     deployment:
+       spec:
+         template:
+           spec:
+             containers:
+             - name: grafana
+               env:
+               - name: GF_SECURITY_ADMIN_USER
+                 value: admin
+               - name: GF_SECURITY_ADMIN_PASSWORD
+                 value: admin
+   EOF
+   ```
+
+2. **Configurer la datasource Thanos** pour accéder aux métriques MCO :
+   ```bash
+   oc apply -f - <<EOF
+   apiVersion: grafana.integreatly.org/v1beta1
+   kind: GrafanaDatasource
+   metadata:
+     name: observability-datasource
+     namespace: open-cluster-management-observability
+   spec:
+     instanceSelector:
+       matchLabels:
+         dashboards: "grafana-dev"
+     datasource:
+       name: Observability-Thanos
+       type: prometheus
+       access: proxy
+       url: https://observability-thanos-query-frontend.open-cluster-management-observability.svc:9090
+       isDefault: true
+       jsonData:
+         httpHeaderName1: Authorization
+         tlsSkipVerify: true
+       secureJsonData:
+         httpHeaderValue1: Bearer \$(oc sa get-token grafana-dev-sa -n open-cluster-management-observability)
+   EOF
+   ```
+
+3. **Accéder à l'interface Grafana dev** :
+   ```bash
+   oc get route grafana-dev-route -n open-cluster-management-observability
+   ```
+
+4. **Créer et tester vos dashboards** dans l'interface Grafana, puis exporter le JSON du dashboard.
+
+5. **Intégrer le dashboard dans le projet** en créant un `GrafanaDashboard` dans `manifests/policies/grafana-policy/` et en le référençant dans la policy.
+
+Pour plus de détails, consultez la [documentation officielle Red Hat ACM](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.11/html-single/observability/index#setting-up-the-grafana-developer-instance).
+
+## 6. Commandes utiles
 
 - récuperer le mdp Argo CD :
 ```bash
